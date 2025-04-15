@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TextColorChante from "./textColorChante";
+import ColorChante from "./ColorChange";
 
 function ButtonPopup() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -9,7 +9,7 @@ function ButtonPopup() {
     <div className="absolute right-5 bottom-5">
       <button className="cursor-pointer" onClick={togglePopup}>
         <svg
-          className="w-10 h-10 animate-spin"
+          className="w-10 h-10 animate-spin colorIcon"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -32,12 +32,12 @@ function ButtonPopup() {
         }`}
       >
         <button
-          className="absolute top-1 right-1.5 cursor-pointer text-gray-600 hover:text-red-500 text-xl"
+          className="absolute colorIcon top-1 right-1.5 cursor-pointer text-gray-600 hover:text-red-500 text-xl"
           onClick={togglePopup}
         >
           ✕
         </button>
-        <TextColorChante />
+        <ColorChante />
       </div>
     </div>
   );

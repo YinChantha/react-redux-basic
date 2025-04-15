@@ -1,8 +1,10 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 interface ColorContextType {
-  color: string;
-  setColor: (color: string) => void;
+  textcolor: string;
+  setTextColor: (color: string) => void;
+  iconcolor: string;
+  setIconColor: (color: string) => void;
 }
 
 const ColorContext = createContext<ColorContextType | undefined>(undefined);
@@ -14,10 +16,11 @@ export const useColor = () => {
 };
 
 export const ColorProvider = ({ children }: { children: ReactNode }) => {
-  const [color, setColor] = useState("#ff0000");
+  const [textcolor, setTextColor] = useState("#ff0000");
+  const [iconcolor, setIconColor] = useState("#000000");
   useEffect(() => {
-    document.documentElement.style.setProperty("--text-color", color);
-  }, [color]);
-
-  return <ColorContext.Provider value={{ color, setColor }}>{children}</ColorContext.Provider>;
+    document.documentElement.style.setProperty("--text-color", textcolor);
+    document.documentElement.style.setProperty("--icon-color", iconcolor);
+  }, [textcolor,iconcolor]);
+return <ColorContext.Provider value={{ textcolor, setTextColor, iconcolor, setIconColor }}>{children}</ColorContext.Provider>;
 };
