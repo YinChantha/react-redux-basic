@@ -6,7 +6,7 @@ function ButtonPopup() {
   const togglePopup = () => {setIsPopupOpen(!isPopupOpen);};
 
   return (
-    <div className="absolute right-5 bottom-5">
+    <div className="absolute right-5 bottom-10">
       <button className="cursor-pointer" onClick={togglePopup}>
         <svg
           className="w-10 h-10 animate-spin colorIcon"
