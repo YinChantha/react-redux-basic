@@ -6,25 +6,23 @@ import Counter from "./components/counter/counter";
 function App() {
   const [{ background }] = useSpring(
     () => ({
-      from: { background: "var(--step0)" },
-      to: [
-        { background: "var(--step0)" },
-        { background: "var(--step1)" },
-        { background: "var(--step2)" },
-        { background: "var(--step3)" },
-        { background: "var(--step4)" },
-      ],
-      config: config.molasses,
-      loop: {
-        reverse: true,
-      },
-    }),
+        from: { background: "var(--step0)" },
+        to: [
+          { background: "var(--step0)" },
+          { background: "var(--step1)" },
+          { background: "var(--step2)" },
+          { background: "var(--step3)" },
+          { background: "var(--step4)" },
+        ],
+        config: config.molasses,
+        loop: { reverse: true,},
+      }),
     []
   );
 
   return (
     <>
-      <animated.div className="background" style={{ background, zIndex: -1 }} />
+      <animated.div {...{ className: 'background' }} style={{ background, zIndex: -1 }} />
         <div className="flex flex-col justify-center items-center h-screen">
           <TypeAnimation
             className="text-4xl font-bold"
