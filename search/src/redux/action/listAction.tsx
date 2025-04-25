@@ -10,7 +10,7 @@ const fetchListRequest = () => {
     }
 }
 
-const fetchListSuccess = (list:any) => {
+const fetchListSuccess = (list: any) => {
     return {
         type: FETCH_SUCCESS,
         payload: list,
@@ -44,7 +44,7 @@ const searchListRequest = () => {
     }
 }
 
-const searchListSuccess = (list:any) => {
+const searchListSuccess = (list: any) => {
     return {
         type: SEARCH_SUCCESS,
         payload: list,
@@ -60,13 +60,12 @@ const searchListErrore = (error: any) => {
 
 
 // fetch sing list action
-
 export const fetchSingleListAction = (name: any) => {
     return async (dispatch: any) => {
         dispatch(searchListRequest());
         try {
             const res = await axios.get(`${apiURL}?name=${name}`)
-            dispatch(searchListSuccess(res))
+            dispatch(searchListSuccess(res.data[0]))
         } catch (error) {
             dispatch(searchListErrore(error))
         }

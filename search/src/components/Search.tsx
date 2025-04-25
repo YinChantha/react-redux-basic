@@ -11,7 +11,6 @@ const Search = () => {
         if (search === "") {
             dispatch(fetchListAction());
         }else{
-
             dispatch(fetchSingleListAction(search));
         }
     }

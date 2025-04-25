@@ -3,9 +3,9 @@ import { FETCH_ERRORE, FETCH_REQUEST, FETCH_SUCCESS, SEARCH_ERRORE, SEARCH_REQUE
 //initial state
 const initialState = {
   loading: false,
+  // in case errore response from api
   error: "",
   lists: [],
-  list: {},
 };
 
 //reducers
