@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
   error: "",
   lists: [],
-  post: {},
+  list: {},
 };
 
 //reducers

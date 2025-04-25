@@ -61,11 +61,11 @@ const searchListErrore = (error: any) => {
 
 // fetch sing list action
 
-export const fetchSingleListAction = (search: any) => {
+export const fetchSingleListAction = (name: any) => {
     return async (dispatch: any) => {
         dispatch(searchListRequest());
         try {
-            const res = await axios.get(`${apiURL}?${search}`)
+            const res = await axios.get(`${apiURL}?name=${name}`)
             dispatch(searchListSuccess(res))
         } catch (error) {
             dispatch(searchListErrore(error))
