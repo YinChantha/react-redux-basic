@@ -10,8 +10,8 @@ const List = () => {
     dispatch(fetchListAction());
   }, []);
 
-  const { loading, error, lists, post } = useSelector((data: any) => data);
-  console.log(loading, error, lists, post);
+  const { loading, error, lists, list } = useSelector((data: any) => data);
+  console.log(loading, error, lists, list);
 
   return (
     <>
@@ -27,17 +27,17 @@ const List = () => {
           {error.response.status && "No Post Found"}
         </h2>
       ) : (
-        lists.map((d: any) => (
-          <div className="mt-3" key={d.id}>
+        lists.map((list: any) => (
+          <div className="mt-3" key={list.id}>
             {/* name, email and website */}
             <div className="block bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 p-3">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {d.name}
+                {list.name}
               </h5>
               <p className="font-normal text-gray-700 dark:text-gray-400">
-                {d.email},{" "}
-                <a href={d.website} target="_blank" className="text-blue-600 italic">
-                  {d.website}
+                {list.email},{" "}
+                <a href={list.website} className="text-blue-600 italic">
+                  {list.website}
                 </a>
               </p>
             </div>
