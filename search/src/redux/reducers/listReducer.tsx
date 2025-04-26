@@ -1,7 +1,7 @@
 import { FETCH_ERRORE, FETCH_REQUEST, FETCH_SUCCESS, SEARCH_ERRORE, SEARCH_REQUEST, SEARCH_SUCCESS } from "../../constraints/actionType";
 
 //initial state
-const initialState = {
+const ListsState = {
   loading: false,
   // in case errore response from api
   error: "",
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 //reducers
-export const postsReducer = (state = initialState, action: any) => {
+export const postsReducer = (state = ListsState, action: any) => {
   switch (action.type) {
     case FETCH_REQUEST:
       return {
@@ -55,4 +55,3 @@ export const postsReducer = (state = initialState, action: any) => {
       return state;
   }
 };
-//store

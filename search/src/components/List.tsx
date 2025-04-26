@@ -1,24 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
 import Search from "./Search";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchListAction } from "../redux/action/listAction";
 import { ThunkDispatch } from "redux-thunk";
+import Pagination from "./Pagination";
 
 const List = () => {
   const dispatch: ThunkDispatch<any, any, any> = useDispatch();
+  const loading = useSelector((state: any) => state.loading);
+  const lists = useSelector((state: any) => state.lists);
+  // const { loading, lists } = useSelector((data: any) => data);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemperPage = 3
   useEffect(() => {
-    dispatch(fetchListAction());
-  }, [dispatch]);
+    dispatch(fetchListAction(currentPage, itemperPage));
+  }, [dispatch,currentPage,itemperPage]);
 
-  const { loading, lists } = useSelector((data: any) => data);
+  const handlePageClick = (event: { selected: number }) => {
+    setCurrentPage(event.selected); // No need +1 here because our Redux already calculates _start
+  };
+  const totalPosts = 10; //fixed value 
+  const pageCount = Math.ceil(totalPosts / itemperPage);
+
 
   return (
     <>
       <Search />
       <br />
       <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-        Total Posts
-        {!lists[0]?.id ? 0 : lists.length}
+        Total Posts:{" "}{!lists[0]?.id ? 0 : lists.length}
       </h1>
       {loading ? (
         <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 mt-16">
@@ -45,6 +55,9 @@ const List = () => {
           </div>
         ))
       )}
+         <div className="mt-6">
+        <Pagination pageCount={pageCount} onPageChange={handlePageClick} />
+      </div>
     </>
   );
 };
