@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FETCH_ERRORE, FETCH_REQUEST, FETCH_SUCCESS, SEARCH_ERRORE, SEARCH_REQUEST, SEARCH_SUCCESS } from "../../constraints/actionType"
+import { FETCH_ERRORE, FETCH_REQUEST, FETCH_SUCCESS } from "../../constraints/actionType"
 import apiURL from "../../utils/apiUrl"
 
 
@@ -25,49 +25,27 @@ const fetchListErrore = (error: any) => {
 }
 
 // action fetch 
-export const fetchListAction = () => {
+// export const fetchListAction = () => {
+//     return async (dispatch: any) => {
+//         dispatch(fetchListRequest());
+//         try {
+//             const res = await axios.get(apiURL)
+//             dispatch(fetchListSuccess(res.data))
+//         } catch (error) {
+//             dispatch(fetchListErrore(error))
+//         }
+//     }
+// }
+
+export const fetchListAction = (page = 0, limit = 3) => {
     return async (dispatch: any) => {
         dispatch(fetchListRequest());
         try {
-            const res = await axios.get(apiURL)
-            dispatch(fetchListSuccess(res.data))
+        const start = page * limit; // page 0 = 0, page 1 = 3, page 2 = 6...
+        const res = await axios.get(`${apiURL}?_start=${start}&_limit=${limit}`);
+        dispatch(fetchListSuccess(res.data));
         } catch (error) {
-            dispatch(fetchListErrore(error))
+        dispatch(fetchListErrore(error));
         }
-    }
-}
-
-// Search list actio type
-const searchListRequest = () => {
-    return {
-        type: SEARCH_REQUEST
-    }
-}
-
-const searchListSuccess = (list: any) => {
-    return {
-        type: SEARCH_SUCCESS,
-        payload: list,
-    }
-}
-
-const searchListErrore = (error: any) => {
-    return {
-        type: SEARCH_ERRORE,
-        payload: error,
-    }
-}
-
-
-// fetch sing list action
-export const fetchSingleListAction = (name: any) => {
-    return async (dispatch: any) => {
-        dispatch(searchListRequest());
-        try {
-            const res = await axios.get(`${apiURL}?name=${name}`)
-            dispatch(searchListSuccess(res.data[0]))
-        } catch (error) {
-            dispatch(searchListErrore(error))
-        }
-    }
-}
+    };
+};

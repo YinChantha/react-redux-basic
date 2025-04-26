@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { ThunkDispatch } from "redux-thunk";
-import { fetchListAction, fetchSingleListAction } from "../redux/action/listAction";
+import { fetchListAction } from "../redux/action/listAction";
+import { fetchSingleListAction } from "../redux/action/searchSingList";
 
 const Search = () => {
     const dispatch: ThunkDispatch<any, any, any> = useDispatch();
